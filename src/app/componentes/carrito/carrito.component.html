@@ -1,0 +1,24 @@
+<table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Articulo</th>
+        <th>Color</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Total</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let p of productos">
+      <tr>
+        <td></td>
+        <td>{{ p.nombre | titlecase }}</td>
+        <td>{{ p.color | titlecase }}</td>
+        <td>{{p.precioOferta | currency:'EUR'}}</td>
+        <td>{{ p.cantidad }}</td>
+        <td> {{ (p.precioOferta * p.cantidad) |currency: 'EUR' }}</td>
+        <td><mat-icon style="cursor: pointer" (click)="deleteItem(p)">delete</mat-icon></td>
+      </tr>
+    </tbody>
+    </table>

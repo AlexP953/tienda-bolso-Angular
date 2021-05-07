@@ -1,0 +1,84 @@
+<button mat-icon-button (click)="volver()">
+    <mat-icon>arrow_back</mat-icon>
+</button>
+
+    <mat-vertical-stepper #stepper>
+      
+      <mat-step>
+        <ng-template matStepLabel>Datos del carrito</ng-template>
+        <app-carrito></app-carrito>
+        <div>
+          <div class="totales">
+            <app-importe-pagar></app-importe-pagar>
+            <p>Total a pagar</p>
+            
+          </div>
+            <button mat-button matStepperPrevious>Atrás</button>
+            <button mat-button matStepperNext>Siguiente</button> 
+      </div>
+      </mat-step>
+      
+      
+      <mat-step [stepControl]="firstFormGroup">
+        <mat-card>
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Datos de contacto / entrega</ng-template>
+            
+            <mat-form-field appearance="outline" class="form white">
+              <mat-label>Nombre</mat-label>
+              <input matInput placeholder="Nombre y apellidos" formControlName="nombre">
+              <mat-icon matPrefix class="error">warning</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form white">
+              <mat-label>Dirección</mat-label>
+              <textarea matInput type="text" formControlName="direccion" placeholder="Dirección de entrega"></textarea>
+              <mat-icon matPrefix class="error ">warning</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form white">
+              <mat-label>Teléfono</mat-label>
+              <input matInput formControlName="telefono" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" min="1" maxlength="9" type="text" placeholder="Número de teléfono">
+              <mat-icon matPrefix class="error ">warning</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form white">
+              <mat-label>Email</mat-label>
+              <input matInput type="text" formControlName="email" placeholder="Email de contacto">
+              <mat-icon matPrefix class="error ">warning</mat-icon>
+            </mat-form-field>
+
+
+            <div>
+              <button mat-button matStepperPrevious>Atrás</button>
+              <button mat-button matStepperNext (click)="guardar()">Siguiente</button>
+            </div>
+          </form>
+        </mat-card>
+      </mat-step>
+    
+    
+    
+      <mat-step [stepControl]="secondFormGroup">
+        
+        <ng-template matStepLabel>Pago</ng-template>
+        <button (click)="simularPagoExitoso()">PAGO FALSO</button>
+
+
+        <!-- <div id="myPaypalButtons"></div>
+      
+          <div>
+            <button mat-button matStepperPrevious>Atrás</button>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div> -->
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Hecho</ng-template>
+        <p>Pedido realizado</p>
+        <div>
+          <button mat-button matStepperPrevious>Atrás</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>

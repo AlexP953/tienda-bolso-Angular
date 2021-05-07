@@ -1,0 +1,113 @@
+* {
+  color: black;
+}
+
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  background: rgb(255, 254, 254);
+}
+
+.precio {
+  text-align: right;
+}
+
+.anterior {
+    color: red;
+    text-decoration: line-through;
+  }
+
+.imagenes{
+  display: flex;
+  justify-content: center;
+}
+img{
+    width: 45%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin: 0 auto;
+  }
+
+.flex {
+  display: flex;
+}
+
+mat-chip {
+  max-width: 100px;
+  color: white !important;
+  }
+  .verde {
+  background-color: green !important;
+  color: white;
+  }
+  .marron {
+  background-color: rgb(172, 141, 101) !important;
+  }
+  .rojo {
+  background-color: red !important;
+  color: white;
+  }
+  .negro {
+  background-color: black !important;
+  color: white;
+  text-align: center;
+  }
+  .blanco {
+  background-color: white !important;
+  color: black !important;
+  }
+  .azul {
+  background-color: rgb(32, 32, 148) !important;
+  color: white;
+  }
+  .celeste {
+  background-color: rgb(68, 224, 230) !important;
+  }
+  .bordo {
+  background-color: rgb(114, 41, 41) !important;
+  color: white;
+  }
+
+  input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    text-align: center;
+    }
+    
+    
+    /* Firefox */
+    
+    input[type=number] {
+    -moz-appearance: textfield;
+    text-align: center;
+    }
+
+    mat-form-field{
+      color: black;
+      margin: 0 auto;
+    }
+
+    .border{
+      display: block;
+    }
+    .noBorder{
+      display: none;
+      }
+
+
+    .botonExt {
+        background-color: #4caf4f00; /* Green */
+        border: 3px solid black;
+        color: black;
+        padding: 15px 32px;
+        margin: 5px auto;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        width: 100%;
+      }

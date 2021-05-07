@@ -1,0 +1,34 @@
+<p class="pFiltro" (click)="mostrarOcultar()">{{mensaje_enlace}}</p>
+
+<div class="principal" *ngIf="mostrar">
+    <div>
+    <mat-form-field appearance="outline">
+        <mat-label>Búsqueda por texto</mat-label>
+        <input [(ngModel)]="texto" (keyup)="changeText($event)" matInput>
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Colores</mat-label>
+        <mat-select [(ngModel)]="filtro.color" (selectionChange)="changeColor($event)">
+            <mat-option *ngFor="let color of colores" [value]="color">
+                {{color | titlecase }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Tipo de Producto</mat-label>
+        <mat-select [(ngModel)]="filtro.tipo" (selectionChange)="changeProductType($event)">
+            <mat-option *ngFor="let tipo of tipos" [value]="tipo">
+                {{ tipo | titlecase }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+
+<ngx-slider  class="barra" (highValueChange)="changeSlideUperPrice($event)" (valueChange)="changeSlideLowerPrice($event)" [(value)]="value" [(highValue)]="highValue" [options]="options"></ngx-slider>
+<p class="rango">Rango de precios</p>
+</div>

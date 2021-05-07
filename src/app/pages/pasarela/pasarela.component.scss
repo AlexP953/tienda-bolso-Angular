@@ -1,0 +1,49 @@
+
+.mat-stepper-vertical {
+    margin-top: 8px;
+  }
+  
+  .mat-form-field {
+    margin-top: 16px;
+  }
+  
+
+  form {
+    display: grid;
+  }
+
+  .error {
+    color: red;
+  }
+
+  .totales{
+    width: 30%;
+    display: flex;
+    
+  }
+
+  .totales p {
+    transform: translateY(4px);
+    align-self: center;
+    display: flex;
+    margin: 0;
+    
+  }
+
+  app-importe-pagar{
+  }
+
+  .mat-stepper-vertical {
+    background: rgb(189, 187, 187);
+    width: 95%;
+    margin: 0 auto;
+    border-radius: 2% 2%;
+    margin-bottom: 5%;
+
+  }
+  mat-card , app-carrito{
+    background:none;
+  }
+  .mat-card.mat-card.mat-focus-indicator {
+    background: rgb(189, 187, 187) !important;
+  }

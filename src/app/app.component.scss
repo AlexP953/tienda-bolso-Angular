@@ -1,0 +1,58 @@
+* {
+    
+    background: rgb(51, 141, 51);
+}
+
+body{
+    width: 100%;
+}
+
+.first{
+    height: 15vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    margin-bottom: 0;
+}
+
+.loguito{
+    font-size: 7.5rem;
+}
+
+.lupa {
+    display: flex;
+    transform: translateX(-70px);
+}
+
+.lupa button{
+    transform: translateY(20px);
+}
+
+.lupa, .lupa app-importe-pagar {
+    background: none;
+}
+
+mat-icon{
+    font-size: 3.5rem;
+}
+
+p{
+    color: white;
+    font-size: 5rem;
+}
+
+.butonAtras {
+    display: none;
+}
+@media (max-width: 600px) {
+    .logoPrincipal {
+      display: none;
+    }
+}
+@media (max-width: 900px) {
+    .loguito{
+        font-size: 6.5rem;
+    }
+}

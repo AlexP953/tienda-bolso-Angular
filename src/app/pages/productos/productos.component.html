@@ -1,0 +1,22 @@
+<app-filtros (filtrarProductos)="filtrarProductos($event)"></app-filtros>
+<div class="columnas">
+
+    <mat-card *ngFor="let i of productosMostrar" class="example-card">
+
+        <img (click)="navegar(i.url)" *ngIf="auxTipo==='todos'" mat-card-image src="/assets/img/{{ i.img[0] }}">
+        <img (click)="navegar(i.url)" *ngIf="auxTipo!=='todos'" mat-card-image src="/assets/img/{{ mostrarColor(i) }}">
+
+        <mat-card-content>
+            <p (click)="navegar(i.url)"> {{ i.nombre }}</p>
+            <p class="precio anterior">{{ i.precio }}€</p>
+            <p class="precio"> {{ i.precioOferta }}€</p>
+            <p> {{ i.descripcion }}</p>
+
+            <mat-icon *ngIf="!comprobarSiEstaSeleccionado(i)" (click)="selectFavorite(i)"><span>
+                    favorite_border
+                </span></mat-icon>
+            <mat-icon *ngIf="comprobarSiEstaSeleccionado(i)" class="red" (click)="deselectFavorite(i)"><span
+                    class="red">favorite</span></mat-icon>
+        </mat-card-content>
+    </mat-card>
+</div>

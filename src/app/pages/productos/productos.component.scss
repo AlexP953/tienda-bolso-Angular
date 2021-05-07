@@ -1,0 +1,65 @@
+.red{
+  color: red;
+}
+
+.example-card {
+  box-shadow: none;
+  margin: 1rem;
+  margin-left: 10%;
+  }
+.example-card img{
+    max-width: 350px;
+    filter: drop-shadow(3px 3px 10px rgb(73, 73, 73));
+  }
+  
+  .example-card img:hover{
+    transform: scale(1.05);
+  }
+
+  .precio {
+    text-align: end;
+  }
+
+  .anterior {
+    color: red;
+    text-decoration: line-through;
+  }
+
+  
+  .backRed{
+    background: red;
+  }
+
+  .backYellow{
+    background: yellow;
+  }
+
+  mat-card{
+    background: rgba(0, 0, 0, 0);
+    color: black;
+  }
+
+  .columnas {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+
+  }
+
+  @media (max-width : 1024px) {
+    .columnas {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+  }
+} 
+
+@media (max-width : 768px) {
+  .columnas {
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    justify-items: center;
+
+  }
+  .example-card img:hover{
+    transform: scale(1);
+  }
+}

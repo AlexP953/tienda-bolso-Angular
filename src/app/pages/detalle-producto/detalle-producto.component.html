@@ -1,0 +1,45 @@
+<button mat-icon-button class="butonAtras" (click)="volver()">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+
+<mat-card>
+  <mat-card-title> {{producto.nombre}}</mat-card-title>
+
+  <div class="imagenes">
+    <img [ngClass]="comprobarSiImgCoincideColor(i) ? 'border' : 'noBorder' " mat-card-image *ngFor="let i of producto.img"
+      src="/assets/img/{{ i }}">
+  </div>
+
+
+
+  <div>
+    <div>
+      <div>
+        <mat-chip-list aria-label="Color selection">
+          <mat-chip (click)="seleccionoColor(chip)" *ngFor="let chip of producto.colores" class="{{ chip }}">
+            {{ chip | titlecase }}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+
+      <div>
+        <p class="precio anterior">{{producto.precio | currency:'EUR'}}</p>
+        <p class="precio">{{producto.precioOferta | currency:'EUR'}}</p>
+      </div>
+    </div>
+
+    <p>{{producto.descripcion}}</p>
+
+    <mat-form-field *ngIf="color" appearance="outline">
+      <mat-label>{{color | titlecase }}</mat-label>
+      <input onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" min="0" maxlength="9" type="number"
+        [(ngModel)]="cantidad" matInput placeholder="Cantidad">
+      <mat-icon style="cursor: pointer" matSuffix class="{{ color }}-icon" (click)="add()">add_circle</mat-icon>
+      <mat-icon style="cursor: pointer" matPrefix class=" {{ color }}-icon" (click)="remove()">remove_circle</mat-icon>
+    </mat-form-field>
+  </div>
+
+
+  <button *ngIf="showAgregar" class="botonExt" (click)="agregar()">AGREGAR</button>
+  <button *ngIf="showPagar" class="botonExt" (click)="pagar()">VER LA CESTA</button>
+</mat-card>

@@ -1,0 +1,36 @@
+.principal div{
+   display: flex;
+   justify-content: space-evenly;
+   padding: 3%;
+   }
+
+.barra{
+  margin: 0 10%;
+  width: 75%;
+}
+
+.principal {
+ height: 35%;
+ margin-bottom: 2%;
+}
+
+p{
+  text-align: center;
+}
+
+.pFiltro{
+  text-align: left;
+  margin: 2%;
+}
+
+.mat-option, .mat-option-selected{
+  background: white;
+}
+
+.mat-select-min-line, .ng-tns-c128-3, .ng-star-inserted{
+  background: white !important;
+}
+
+.rango{
+  padding-top: 2%;
+}

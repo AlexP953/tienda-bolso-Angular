@@ -1,0 +1,32 @@
+
+  <div class="first">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item disabled>
+        <span>AQUI</span>
+      </button>
+      <button mat-menu-item disabled>
+        <span>IRA</span>
+      </button>
+
+      <button mat-menu-item disabled>
+        <span>ALGO</span>
+      </button>
+    </mat-menu>
+
+    <button class="logoPrincipal" mat-icon-button (click)="volver()">
+      <mat-icon class="loguito">business_center</mat-icon>
+    </button>
+
+
+    <div class="lupa">
+      <app-importe-pagar></app-importe-pagar>
+      <button  mat-icon-button (click)="pasarela()"><mat-icon>shopping_basket</mat-icon></button>
+
+  </div>
+  </div>
+
+  <router-outlet></router-outlet>
