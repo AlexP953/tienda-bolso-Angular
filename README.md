@@ -1,27 +1,27 @@
-# TiendaBolsos
+# Descripción
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.
+Una web para una tienda online de bolsos
 
-## Development server
+## Demo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Prueba una demo [aquí](https://tienda-bolsos-363d7.web.app/productos)
 
-## Code scaffolding
+## Screenshots
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+![img de demo](https://i.imgur.com/AQjXMuQ.png)
+![img de demo](https://i.imgur.com/AcBAryh.png)
+![img de demo](https://i.imgur.com/F6X5Yz8.png)
+![img de demo](https://i.imgur.com/jd4Aarm.png)
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Lenguajes
 
-## Running unit tests
+Angular
+Angular Material
+HTML
+CSS
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Creado por
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Alex Peris
