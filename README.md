@@ -16,10 +16,10 @@ Prueba una demo [aquí](https://tienda-bolsos-363d7.web.app/productos)
 
 ## Lenguajes
 
-Angular
-Angular Material
-HTML
-CSS
+* Angular
+* Angular Material
+* HTML
+* CSS
 
 
 ## Creado por
