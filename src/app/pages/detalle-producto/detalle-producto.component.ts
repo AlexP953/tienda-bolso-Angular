@@ -46,8 +46,8 @@ export class DetalleProductoComponent implements OnInit {
       }
     })
     this.afs.collection('productos').doc(this.idProducto).get().toPromise().then((productoDeLaBaseDeDatos) => {
-      this.producto = productoDeLaBaseDeDatos.data() as producto;
-      console.log(this.producto);
+    this.producto = productoDeLaBaseDeDatos.data() as producto;
+    console.log(this.producto);
     });
     console.log('EL COLOR DEL SERVICIO ES', this.colorServicio.getColor())
   }

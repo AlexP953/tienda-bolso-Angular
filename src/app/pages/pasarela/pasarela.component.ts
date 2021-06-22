@@ -2,7 +2,7 @@ import { AfterViewChecked, AfterViewInit, Component, OnInit } from '@angular/cor
 import { Location } from '@angular/common'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { render } from 'creditcardpayments/creditCardPayments';  
+import { render } from 'creditcardpayments/creditCardPayments';
 import { CestaService } from '../../services/cesta.service';
 import { cestaItem } from '../../interfaces/cestaItem';
 import * as firebase from 'firebase';
@@ -17,27 +17,27 @@ export class PasarelaComponent implements OnInit, AfterViewInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   importePagar: number;
-  paid:boolean = false; 
-  idDocumento: string = ( localStorage.getItem('id') ) ? localStorage.getItem('id') : null;
+  paid: boolean = false;
+  idDocumento: string = (localStorage.getItem('id')) ? localStorage.getItem('id') : null;
 
-  constructor( 
+  constructor(
     private location: Location,
     private _formBuilder: FormBuilder,
     private db: AngularFirestore,
     private cestaServ: CestaService
-    ) {
+  ) {
 
- 
-     }
+
+  }
 
   ngOnInit() {
-    
+
     /// TENEIS QUE CARGAR EL OBSERVABLE DE DATASERVICE QUE SE ENCARGA DE GUARDAR EL DATO
     // DE EL IMPORTEFINAL A PAGAR.
     // Una vez tengais ese dato, teneis que guardarlo en una propiedad de la clase, y pasarselo
     // a la propiedad value del objeto que necesita paypal para procesar el pago
 
-    this.cestaServ.importeFinal$.subscribe((imp: number)=>{
+    this.cestaServ.importeFinal$.subscribe((imp: number) => {
       this.importePagar = imp as any;
     })
 
@@ -48,14 +48,14 @@ export class PasarelaComponent implements OnInit, AfterViewInit {
 
 
     const pasarelaObject = localStorage.getItem('pasarelaObject');
-    const dataLoaded =  pasarelaObject ? JSON.parse(pasarelaObject) : false; 
+    const dataLoaded = pasarelaObject ? JSON.parse(pasarelaObject) : false;
     console.log('DATA LOADED', dataLoaded)
 
     this.firstFormGroup = this._formBuilder.group({
-      nombre: [ dataLoaded ? dataLoaded.nombre :  '' , [  Validators.required, Validators.maxLength(100) ] ] ,
-      direccion: [ dataLoaded ? dataLoaded.direccion : ''   , [ Validators.required, Validators.maxLength(1000) ] ],
-      telefono: [ dataLoaded ?  dataLoaded.telefono  : ''  , [ Validators.required ]  ],
-      email: [ dataLoaded ? dataLoaded.email : '', [ Validators.required, Validators.email ] ],
+      nombre: [dataLoaded ? dataLoaded.nombre : '', [Validators.required, Validators.maxLength(100)]],
+      direccion: [dataLoaded ? dataLoaded.direccion : '', [Validators.required, Validators.maxLength(1000)]],
+      telefono: [dataLoaded ? dataLoaded.telefono : '', [Validators.required]],
+      email: [dataLoaded ? dataLoaded.email : '', [Validators.required, Validators.email]],
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
@@ -63,105 +63,105 @@ export class PasarelaComponent implements OnInit, AfterViewInit {
   }
 
 
-  async simularPagoExitoso(){
+  async simularPagoExitoso() {
     this.paid = true;
     const res = await this.db.collection('pedidos').doc(this.idDocumento).set({
       paid: true,
       precioFinal: this.importePagar,
       cestaCompra: this.cestaServ.getProductos()
-    }, { merge: true } )
+    }, { merge: true })
     console.log('RES', res)
 
     this.actualizarStocks();
 
   }
 
-  ngAfterViewInit(){
-    try{
+  ngAfterViewInit() {
+    try {
       render({
-        id: '#myPaypalButtons', 
+        id: '#myPaypalButtons',
         currency: 'EUR',
-        value: `${ this.importePagar }`,
-        onApprove: (details)=> {
-          try{
+        value: `${this.importePagar}`,
+        onApprove: (details) => {
+          try {
             console.log('COBRO EXITOSO', details);
             alert('COBRO EXITOSO');
             this.paid = true;
             this.db.collection('pedidos').doc(this.idDocumento).set({
               paid: true
-            }, { merge: true } )
+            }, { merge: true })
 
             /// AQUI TENDREMOS QUE APLICAR LA LOGICA PARA RESTAR ESOS ITEMS DE STOCKS
 
-          }catch(e){
+          } catch (e) {
             console.log('ERROR CAPTURADO', e)
-          } 
-          
+          }
+
         }
-      })   
-    }catch(e){
-      console.log('ERROR CAPTURADO LINEA 87',e)
+      })
+    } catch (e) {
+      console.log('ERROR CAPTURADO LINEA 87', e)
     }
-   
+
   }
 
 
-  actualizarStocks(){
+  actualizarStocks() {
     // que necesito saber: 
     const cestaProductos = this.cestaServ.getProductos();
 
 
 
-    cestaProductos.forEach((item:cestaItem) => {
+    cestaProductos.forEach((item: cestaItem) => {
 
-          const color = item.color; // marron
-          const id = item.id; // brooklyn
-          const cantidad = item.cantidad; // 10
-          // brooklyn-azul-10
-          console.log('DENTRO BUCLE, DATOS',{
-            color, id, cantidad
-          })
+      const color = item.color; // marron
+      const id = item.id; // brooklyn
+      const cantidad = item.cantidad; // 10
+      // brooklyn-azul-10
+      console.log('DENTRO BUCLE, DATOS', {
+        color, id, cantidad
+      })
 
-          this.db.collection('stocks').doc(id).set(
-            {
-            [color]: firebase.default.firestore.FieldValue.increment( - cantidad  )
-          }, 
-          { merge: true }
-          ).then((res)=>{
-            console.log('UPDATE RESPUESTA', res)
-          })
+      this.db.collection('stocks').doc(id).set(
+        {
+          [color]: firebase.default.firestore.FieldValue.increment(- cantidad)
+        },
+        { merge: true }
+      ).then((res) => {
+        console.log('UPDATE RESPUESTA', res)
+      })
     })
 
     // reducir elementos de la coleccion de stocks
 
   }
 
-  get form(){
+  get form() {
     return this.firstFormGroup.controls
   }
 
-  volver(){
+  volver() {
     this.location.back()
   }
 
-  async guardar(){
+  async guardar() {
 
     // JSON.stringify tendre que guardarlo el objeto en localStorage
-     // {nombre, email, direccion, telefono}  //  pasarelaObject
+    // {nombre, email, direccion, telefono}  //  pasarelaObject
 
     // 1. Extraer los datos del formulario.
-    const data = this.firstFormGroup.getRawValue();  
+    const data = this.firstFormGroup.getRawValue();
     // AQUI GUARDO EL DATO EN LOCALSTORAGE
 
-    localStorage.setItem('pasarelaObject', JSON.stringify(data)) 
-    
-  
+    localStorage.setItem('pasarelaObject', JSON.stringify(data))
+
+
     // 2. Insertarlos en la base de datos.
-    const idObject = await this.db.collection('pedidos').add(data) 
-     console.log('guardar', data);
-     console.log('ID', idObject.id);
-     this.idDocumento = idObject.id;
-     localStorage.setItem('id', this.idDocumento); 
+    const idObject = await this.db.collection('pedidos').add(data)
+    console.log('guardar', data);
+    console.log('ID', idObject.id);
+    this.idDocumento = idObject.id;
+    localStorage.setItem('id', this.idDocumento);
 
   }
 
